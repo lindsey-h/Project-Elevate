@@ -1,6 +1,7 @@
 """Models for elevate app"""
 
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -8,7 +9,7 @@ db = SQLAlchemy()
 class User(db.Model):
     """A user"""
 
-    __tablename__ == "users"
+    __tablename__ = "users"
 
     user_id = db.Column(db.Integer,
                         autoincrement=True,
@@ -19,11 +20,19 @@ class User(db.Model):
     password = db.Column(db.String, nullable=False)
     # account_owner = db.Column(db.Boolean, nullable=False)
 
+    events = db.relationship("Event",  # The orm object we are relating to
+                           secondary="users_events",  # The association table
+                           backref="users")
 
-class CalendarEvent(db.Model):
-    """An event"""
+    def __repr__(self):
+        return f"<User user_id={self.user_id} fname= {self.fname} 
+                       lname={self.lname} email={self.email}>"
 
-    __tablename__ == "events"
+
+class Event(db.Model):
+    """An event to display on a calendar"""
+
+    __tablename__ = "events"
 
     event_id = db.Column(db.Integer,
                         autoincrement=True,
@@ -34,11 +43,14 @@ class CalendarEvent(db.Model):
     duration_in_minutes = db.Column(db.Integer)
     is_available = db.Column(db.Boolean, default=True, nullable=False)
 
+    def __repr__(self):
+        return f"<Event event_id={self.event_id} title={self.title}>"
+
 
 class Photo(db.Model):
     """An inspiring photo of a cute animal"""
 
-    __tablename__ == "photos"
+    __tablename__ = "photos"
 
     photo_id = db.Column(db.Integer,
                         autoincrement=True,
@@ -46,39 +58,97 @@ class Photo(db.Model):
     url = db.Column(db.String, unique=True, nullable=False)
     animal_type = db.Column(db.String, nullable=False)
 
+    def __repr__(self):
+        return f"<Photo photo_id={self.photo_id} url={self.url} animal_type={self.animal_type}>"
+
 
 class Quote(db.Model):
     """An inspiring quote"""
 
-    __tablename__ == "quotes"
+    __tablename__ = "quotes"
 
     quote_id = db.Column(db.Integer,
                         autoincrement=True,
                         primary_key=True)
-    quote_text = db.Column(db.String, unique=True, nullable=False)
+    text = db.Column(db.String, unique=True, nullable=False)
+    author = db.Column(db.String, nullable=False)
+
+    def __repr__(self):
+        return f"<Quote quote_id={self.quote_id} text={self.text}>"
 
 
 class Post(db.Model):
     """Text posts for wall page"""
 
-    __tablename__ == "posts"
+    __tablename__ = "posts"
 
     post_id = db.Column(db.Integer,
                         autoincrement=True,
                         primary_key=True)   
-    post_text = db.Column(db.String, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
+    text = db.Column(db.String, nullable=False)
     date = db.Column(db.DateTime, nullable=False)
+
+    user = db.relationship("User", backref="posts")
+
+    def __repr__(self):
+        return f"<Post post_id={self.post_id} text={self.text}>"
 
 
 class Contact(db.Model):
     """Contact information about a person"""
 
-    __tablename__ == "contacts"
+    __tablename__ = "contacts"
 
     contact_id = db.Column(db.Integer,
                         autoincrement=True,
-                        primary_key=True)   
+                        primary_key=True)  
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False) 
     fname = db.Column(db.String, nullable=False)
     lname = db.Column(db.String, nullable=False)
     email = db.Column(db.String,  unique=True, nullable=False)
     phone_number = db.Column(db.String,  unique=True, nullable=False)
+
+    user = db.relationship("User", backref="contacts")
+
+    def __repr__(self):
+        return f"<Contact contact_id={self.contact_id} fname={self.fname} lname={self.lname}>"
+
+
+# ------------- Association Tables ---------------
+
+
+class UserEvent(db.Model):
+    """Association between User and Event"""
+
+    __tablename__ = "users_events"
+
+    user_event_id = db.Column(db.Integer,
+                        autoincrement=True,
+                        primary_key=True)
+    user_id = db.Column(db.ForeignKey("users.user_id"))
+    event_id = db.Column(db.ForeignKey("events.event_id"))
+
+
+# ------------- Connect to DB ---------------
+
+
+def connect_to_db(flask_app, db_uri="postgresql:///elevate", echo=True):
+    flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
+    flask_app.config["SQLALCHEMY_ECHO"] = echo
+    flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+    db.app = flask_app
+    db.init_app(flask_app)
+
+    print("Connected to the db!")
+
+
+if __name__ == "__main__":
+    from server import app
+
+    # Call connect_to_db(app, echo=False) if your program output gets
+    # too annoying; this will tell SQLAlchemy not to print out every
+    # query it executes.
+
+    connect_to_db(app)
