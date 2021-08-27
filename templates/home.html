@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Project Elevate{% endblock %}
+
+{% block head %}
+    
+{% endblock %}
+
+{% block body %}
+    
+    <h1>This is my homepage :D</h1>
+    
+    <h3>Upcoming events:</h3>
+    
+    {% for event in events %}
+
+        <h2>{{event.title}}</h2>
+        <ul>
+        {% for user in event.users %}
+            <li>{{user.fname.title()}}</li>
+        {% endfor %}
+        </ul>
+    
+    {% endfor %}
+
+    {{ cal|safe }}
+
+
+    {#
+    <!-- {% for i in range(5) %}
+    <p>{{quotes[i]['q']}}</p>
+    {% endfor %} -->
+    #}
+
+    <script src="/static/js/script.js"></script>
+
+{% endblock %}
