@@ -6,6 +6,8 @@ import model #take this out when you set up CRUD
 import crud
 from jinja2 import StrictUndefined
 import requests
+import calendar 
+from calendar import HTMLCalendar
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -19,7 +21,9 @@ def show_home():
     # res = requests.get("https://zenquotes.io/api/quotes/")
     # quotes = res.json()
 
-    return render_template('home.html', events=events) 
+    cal = HTMLCalendar().formatmonth(2021, 8)
+
+    return render_template('home.html', events=events, cal=cal) 
     # , quotes=quotes)
 
 

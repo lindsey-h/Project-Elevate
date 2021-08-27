@@ -25,8 +25,7 @@ class User(db.Model):
                            backref="users")
 
     def __repr__(self):
-        return f"<User user_id={self.user_id} fname= {self.fname} 
-                       lname={self.lname} email={self.email}>"
+        return f"<User user_id={self.user_id} fname= {self.fname} lname={self.lname} email={self.email}>"
 
 
 class Event(db.Model):
