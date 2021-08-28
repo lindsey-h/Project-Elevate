@@ -8,6 +8,7 @@ from jinja2 import StrictUndefined
 import requests
 import calendar 
 from calendar import HTMLCalendar
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -43,8 +44,12 @@ def add_event():
     start_time = request.form.get('start-time')
     end_time = request.form.get('end-time')
 
+    start_datetime = date + " " + start_time #'2020-12-12 18:06'
+    datetime_object = datetime.strptime(start_datetime, '%Y-%m-%d %H:%M')
+    crud.create_event(title, start_datetime, description, 60)
+
     print("*"*20)
-    print(title, date, description, start_time, end_time)
+    print(title, date, description, datetime_object, end_time)
     print("*"*20)
 
     return redirect("/")
