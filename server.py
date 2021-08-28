@@ -46,10 +46,10 @@ def add_event():
 
     start_datetime = date + " " + start_time #'2020-12-12 18:06'
     datetime_object = datetime.strptime(start_datetime, '%Y-%m-%d %H:%M')
-    crud.create_event(title, start_datetime, description, 60)
+    crud.create_event(title, datetime_object, description, 60)
 
     print("*"*20)
-    print(title, date, description, datetime_object, end_time)
+    print(title, date, description, start_time, end_time)
     print("*"*20)
 
     return redirect("/")

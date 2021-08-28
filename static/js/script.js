@@ -1,40 +1,34 @@
 "use strict";
 
-import Calendar from '/tui-calendar'; /* ES6 */
-import "/tui-calendar/dist/tui-calendar.css";
-
-// If you use the default popups, use this.
-import '/tui-date-picker/dist/tui-date-picker.css';
-import '/tui-time-picker/dist/tui-time-picker.css';
-
-var calendar = new Calendar('#calendar', {
-  defaultView: 'month',
-  taskView: true,
-  template: {
-    monthDayname: function(dayname) {
-      return '<span class="calendar-week-dayname-name">' + dayname.label + '</span>';
-    }
-  }
-});
-
-calendar.createSchedules([
-  {
-      id: '1',
-      calendarId: '1',
-      title: 'my schedule',
-      category: 'time',
-      dueDateClass: '',
-      start: '2018-01-18T22:30:00+09:00',
-      end: '2018-01-19T02:30:00+09:00'
+var myEvents = [
+  { 
+    id: "required-id-1",
+    name: "New Year", 
+    date: "Wed Aug 28 2021 00:00:00 GMT-0800 (Pacific Standard Time)", 
+    type: "holiday", 
+    everyYear: true 
   },
-  {
-      id: '2',
-      calendarId: '1',
-      title: 'second schedule',
-      category: 'time',
-      dueDateClass: '',
-      start: '2018-01-18T17:30:00+09:00',
-      end: '2018-01-19T17:31:00+09:00',
-      isReadOnly: true    // schedule is read-only
+  { 
+    id: "required-id-2",
+    name: "Valentine's Day", 
+    date: "Wed Aug 28 2021 00:00:00 GMT-0800 (Pacific Standard Time)", 
+    type: "holiday", 
+    everyYear: true,
+    color: "#222"
+  },
+  { 
+    id: "required-id-3",
+    name: "Custom Date", 
+    badge: "08/03 - 08/05",
+    date: ["August/03/2021", "August/05/2021"],
+    description: "Description here",
+    type: "event", 
   }
-]);
+]
+
+$('#evoCalendar').evoCalendar({
+  calendarEvents: myEvents,
+  todayHighlight: true,
+  sidebarToggler: true,
+  sidebarDisplayDefault: false,
+});

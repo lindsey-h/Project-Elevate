@@ -38,12 +38,12 @@ class Event(db.Model):
                         primary_key=True)
     title = db.Column(db.String, nullable=False)                    
     date = db.Column(db.DateTime, nullable=False)
-    description = lname = db.Column(db.Text)
+    description = db.Column(db.Text)
     duration_in_minutes = db.Column(db.Integer)
     is_available = db.Column(db.Boolean, default=True, nullable=False)
 
     def __repr__(self):
-        return f"<Event event_id={self.event_id} title={self.title}>"
+        return f"<Event event_id={self.event_id} title={self.title} description={self.description}>"
 
 
 class Photo(db.Model):
