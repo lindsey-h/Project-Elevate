@@ -27,6 +27,29 @@ def show_home():
     # , quotes=quotes)
 
 
+
+@app.route('/add-event')
+def show_add_event():
+
+    return render_template('add-event.html')
+
+
+@app.route('/add-event', methods=["POST"])
+def add_event():
+
+    title = request.form.get('title')
+    date = request.form.get('date')
+    description = request.form.get('description')
+    start_time = request.form.get('start-time')
+    end_time = request.form.get('end-time')
+
+    print("*"*20)
+    print(title, date, description, start_time, end_time)
+    print("*"*20)
+
+    return redirect("/")
+
+
 if __name__ == "__main__":
     # DebugToolbarExtension(app)
     connect_to_db(app)

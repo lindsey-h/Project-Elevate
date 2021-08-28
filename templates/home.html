@@ -22,8 +22,11 @@
     
     {% endfor %}
 
+    <p><a href='/add-event'><button>Add event</button></a></p>
+
     {{ cal|safe }}
 
+    <div id="calendar" style="height: 800px;"></div>
 
     {#
     <!-- {% for i in range(5) %}
@@ -31,6 +34,6 @@
     {% endfor %} -->
     #}
 
-    <script src="/static/js/script.js"></script>
+    <script type="module" src="/static/js/script.js"></script>
 
 {% endblock %}
