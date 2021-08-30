@@ -42,6 +42,18 @@ class Event(db.Model):
     duration_in_minutes = db.Column(db.Integer)
     is_available = db.Column(db.Boolean, default=True, nullable=False)
 
+
+    def serialize(self):
+        
+        return { "id": self.event_id,
+                 "name": self.title,
+                 "date": self.date,
+                 "type": "event",
+                 "description": self.description
+                #  "duration_in_minutes": self.duration_in_minutes,
+                #  "is_available": self.is_available 
+                }
+
     def __repr__(self):
         return f"<Event event_id={self.event_id} title={self.title} description={self.description}>"
 

@@ -1,6 +1,6 @@
 
 from flask import (Flask, render_template, request, flash, session,
-                   redirect)
+                   redirect, jsonify)
 from model import connect_to_db
 import model #take this out when you set up CRUD
 import crud
@@ -27,6 +27,15 @@ def show_home():
     return render_template('home.html', events=events, cal=cal) 
     # , quotes=quotes)
 
+
+@app.route('/event-data')
+def send_event_data():
+
+    events = model.Event.query.all()
+    print("*"*20)
+    print(events)
+
+    return jsonify([event.serialize() for event in events])
 
 
 @app.route('/add-event')

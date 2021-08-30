@@ -1,34 +1,44 @@
 "use strict";
 
-var myEvents = [
-  { 
-    id: "required-id-1",
-    name: "New Year", 
-    date: "Wed Aug 28 2021 00:00:00 GMT-0800 (Pacific Standard Time)", 
-    type: "holiday", 
-    everyYear: true 
-  },
-  { 
-    id: "required-id-2",
-    name: "Valentine's Day", 
-    date: "Wed Aug 28 2021 00:00:00 GMT-0800 (Pacific Standard Time)", 
-    type: "holiday", 
-    everyYear: true,
-    color: "#222"
-  },
-  { 
-    id: "required-id-3",
-    name: "Custom Date", 
-    badge: "08/03 - 08/05",
-    date: ["August/03/2021", "August/05/2021"],
-    description: "Description here",
-    type: "event", 
-  }
-]
 
-$('#evoCalendar').evoCalendar({
-  calendarEvents: myEvents,
-  todayHighlight: true,
-  sidebarToggler: true,
-  sidebarDisplayDefault: false,
+
+$.get('/event-data', (data) => {
+
+  $('#evoCalendar').evoCalendar({
+    calendarEvents: data,
+    todayHighlight: true,
+    sidebarToggler: true,
+    sidebarDisplayDefault: false,
+  })
+
+  .on('selectDate', function(newDate, oldDate) {
+    $('#evoCalendar').removeClass('event-hide');
+    $('#evoCalendar').addClass('sidebar-hide');
+  })
+
+  $('#sidebarToggler').on('click', () => {
+    $('#evoCalendar').addClass('event-hide');
+  })
+
+  $('#eventListToggler').on('click', () => {
+    $('#evoCalendar').addClass('sidebar-hide');
+  })
+
 });
+
+// $('#evoCalendar').removeClass('sidebar-hide');
+// $("#evoCalendar").evoCalendar('toggleSidebar',true/false);
+
+// .on('click.evocalendar', _.toggleSidebar);
+
+// .on('selectDate', function(newDate, oldDate) {
+//   alert("I clicked a date");
+// })
+;
+
+// // IF eventListToggler: set event listener: toggleEventList
+// if(_.options.eventListToggler) {
+//   _.$elements.eventListToggler
+//   .off('click.evocalendar')
+//   .on('click.evocalendar', _.toggleEventList);
+// }
