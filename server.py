@@ -32,8 +32,23 @@ def show_home():
 def send_event_data():
 
     events = crud.get_all_events()
+    # users = crud.get_users_by_event(event_id)
 
-    return jsonify([event.serialize() for event in events])
+    all_events = []
+
+    for event in events:
+        users = crud.get_users_by_event(event.event_id)
+        e = event.serialize()
+        print("*"*20)
+        print(e)
+        print(users)
+        e["users"] = [user.serialize() for user in users]
+        all_events.append(e)
+        #all_events[event[]] = [user.serialize() for user in users]
+
+    return jsonify(all_events)
+
+    # return jsonify([event.serialize() for event in events])
 
 
 # @app.route('/users-by-event')

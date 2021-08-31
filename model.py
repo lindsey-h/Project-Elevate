@@ -57,8 +57,8 @@ class Event(db.Model):
                  "date": self.date,
                  "type": "event",
                  "description": self.description,
-                 "duration_in_minutes": self.duration_in_minutes
-                #  "is_available": self.is_available 
+                 "duration_in_minutes": self.duration_in_minutes,
+                 "is_available": self.is_available 
                 }
 
     def __repr__(self):

@@ -659,6 +659,7 @@
         if (event_data.badge) markup += '<span>'+event_data.badge+'</span>';
         markup += '</p>'
         if (event_data.description) markup += '<p class="event-desc">'+event_data.description+'</p>';
+        if (event_data.duration_in_minutes) markup += '<p class="event-desc">'+event_data.duration_in_minutes+' minutes</p>';
         markup += '</div>';
         markup += '</div>';
         eventListEl.append(markup);

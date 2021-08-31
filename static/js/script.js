@@ -24,13 +24,20 @@ $.get('/event-data', (data) => {
     $('#evoCalendar').addClass('sidebar-hide');
   })
 
+  for (const d of data) {
+    for (const u of d['users']) {
+      console.log(u['fname']);
+    }
+    
+  }
+
 });
 
-$.get('/users-by-event', {index: 1}, (res) => {
+// $.get('/users-by-event', {index: 1}, (res) => {
 
-  console.log(res);
+//   console.log(res);
 
-});
+// });
 
 // $.get('/eventsusers', {index: 2}, (res) => {
 //   console.log(res);

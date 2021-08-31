@@ -52,6 +52,12 @@ def get_all_events():
     return Event.query.all()
 
 
+def update_event_availability(event_id, boolean):
+
+    event = Event.query.get(event_id)
+    event.is_available = boolean
+
+
 def create_photo(url, animal_type):
     """Create and return a new photo."""
 
