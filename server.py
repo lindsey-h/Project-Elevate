@@ -31,11 +31,32 @@ def show_home():
 @app.route('/event-data')
 def send_event_data():
 
-    events = model.Event.query.all()
-    print("*"*20)
-    print(events)
+    events = crud.get_all_events()
 
     return jsonify([event.serialize() for event in events])
+
+
+# @app.route('/users-by-event')
+# def get_users_by_event():
+
+#     event_id = int(request.args.get("index"))
+
+#     print("*"*20)
+#     print(f"eventid: {event_id}")
+#     print("*"*20)
+
+#     users = crud.get_users_by_event(event_id)
+#     # print(f"users: {users}")
+    
+#     return jsonify([user.serialize() for user in users])
+
+
+# @app.route('/eventsusers')
+# def get_item_by_index():
+#     items = ['apple', 'berry', 'cherry']
+#     idx = int(request.args.get('index', 0))
+
+#     return items[idx]
 
 
 @app.route('/add-event')

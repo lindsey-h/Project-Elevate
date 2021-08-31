@@ -24,6 +24,13 @@ class User(db.Model):
                            secondary="users_events",  # The association table
                            backref="users")
 
+    def serialize(self):
+        
+        return { "user_id": self.user_id,
+                    "fname": self.fname,
+                    "lname": self.lname
+                }
+
     def __repr__(self):
         return f"<User user_id={self.user_id} fname= {self.fname} lname={self.lname} email={self.email}>"
 
@@ -49,8 +56,8 @@ class Event(db.Model):
                  "name": self.title,
                  "date": self.date,
                  "type": "event",
-                 "description": self.description
-                #  "duration_in_minutes": self.duration_in_minutes,
+                 "description": self.description,
+                 "duration_in_minutes": self.duration_in_minutes
                 #  "is_available": self.is_available 
                 }
 

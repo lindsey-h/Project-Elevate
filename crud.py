@@ -19,6 +19,11 @@ def get_all_users():
     return User.query.all()
 
 
+def get_users_by_event(event_id):
+
+    return Event.query.get(event_id).users
+
+
 def add_user_to_event(user_id, event_id):
     """Creates association between User instance and Event instance"""
 

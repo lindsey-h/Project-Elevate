@@ -26,19 +26,15 @@ $.get('/event-data', (data) => {
 
 });
 
+$.get('/users-by-event', {index: 1}, (res) => {
+
+  console.log(res);
+
+});
+
+// $.get('/eventsusers', {index: 2}, (res) => {
+//   console.log(res);
+// });
+
 // $('#evoCalendar').removeClass('sidebar-hide');
 // $("#evoCalendar").evoCalendar('toggleSidebar',true/false);
-
-// .on('click.evocalendar', _.toggleSidebar);
-
-// .on('selectDate', function(newDate, oldDate) {
-//   alert("I clicked a date");
-// })
-;
-
-// // IF eventListToggler: set event listener: toggleEventList
-// if(_.options.eventListToggler) {
-//   _.$elements.eventListToggler
-//   .off('click.evocalendar')
-//   .on('click.evocalendar', _.toggleEventList);
-// }
