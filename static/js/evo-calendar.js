@@ -660,6 +660,14 @@
         markup += '</p>'
         if (event_data.description) markup += '<p class="event-desc">'+event_data.description+'</p>';
         if (event_data.duration_in_minutes) markup += '<p class="event-desc">'+event_data.duration_in_minutes+' minutes</p>';
+        if (event_data.users) {
+            let users_per_event = '';
+            for (const u of event_data.users) {
+                users_per_event += u['fname'] + ' ' + u['lname'] + ',  ';
+                }  
+            users_per_event = users_per_event.slice(0, -3);
+          markup += '<pre class="event-desc">'+users_per_event+'</pre>';
+        }
         markup += '</div>';
         markup += '</div>';
         eventListEl.append(markup);

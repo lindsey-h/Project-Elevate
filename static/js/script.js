@@ -24,12 +24,9 @@ $.get('/event-data', (data) => {
     $('#evoCalendar').addClass('sidebar-hide');
   })
 
-  for (const d of data) {
-    for (const u of d['users']) {
-      console.log(u['fname']);
-    }
-    
-  }
+  // $('div.event-container').on('mouseover', function () {
+  //   alert("hi");
+  // })
 
 });
 

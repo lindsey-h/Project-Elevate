@@ -425,6 +425,12 @@ tr.calendar-body .calendar-day .day[disabled] {
     margin-top: 5px;
 }
 
+.event-container > .event-info > pre.event-desc {
+    font-family: 'Source Sans Pro';
+    font-size: 14px;
+    margin-top: 5px;
+}
+
 
 .event-indicator {
     position: absolute;
