@@ -15,11 +15,19 @@ $.get('/event-data', (data) => {
   .on('selectDate', function(newDate, oldDate) {
     $('#evoCalendar').removeClass('event-hide');
     $('#evoCalendar').addClass('sidebar-hide');
-    $('.btn').on('click', () => {
-  
-      console.log($('.btn').val());
+    $('.btn').on('click', (evt) => {
+      evt.preventDefault();
+      // console.log($('.btn').val());
+      const formInputs = {
+        'event-id': $('.btn').val()
+      };
+    
+      $.post('/add-user-to-event', formInputs, (res) => {
+        alert(res);
+      });
     
     });
+
   })
 
   $(document).ready(function(){

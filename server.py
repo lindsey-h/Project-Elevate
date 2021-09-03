@@ -44,6 +44,21 @@ def send_event_data():
     return jsonify(events_and_users)
 
 
+@app.route('/add-user-to-event', methods=['POST'])
+def add_user_to_event():
+
+    event_id = request.form.get("event-id")
+    print("*"*20)
+    print(f"event id: {event_id}")
+    print("*"*20)
+    # hard-coded user id for now
+    # remove this when retrieving id from session 
+    crud.add_user_to_event(3, event_id)
+
+    return "You are added"
+
+
+
 # @app.route('/users-by-event')
 # def get_users_by_event():
 
