@@ -15,7 +15,18 @@ $.get('/event-data', (data) => {
   .on('selectDate', function(newDate, oldDate) {
     $('#evoCalendar').removeClass('event-hide');
     $('#evoCalendar').addClass('sidebar-hide');
+    $('.btn').on('click', () => {
+  
+      console.log($('.btn').val());
+    
+    });
   })
+
+  $(document).ready(function(){
+    $(".btn").click(function(){
+      console.log('clicked on me');
+    });
+  });
 
   // .on('selectEvent', function(activeEvent) {
   //   $('div.event-info').html("helloooooo");
@@ -29,11 +40,20 @@ $.get('/event-data', (data) => {
     $('#evoCalendar').addClass('sidebar-hide');
   })
 
+  // $('.btn').on('click', () => {
+  
+  //   console.log('clicked on me');
+    
+  // });
+
+});
+
+
+
+
   // $('div.event-container').on('mouseover', function () {
   //   alert("hi");
   // })
-
-});
 
 // $.get('/users-by-event', {index: 1}, (res) => {
 

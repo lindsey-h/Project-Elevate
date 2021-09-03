@@ -668,7 +668,8 @@
             users_per_event = users_per_event.slice(0, -3);
           markup += '<pre class="event-desc">'+users_per_event+'</pre>';
         }
-        markup += '<span class="event-button"></span>';
+        // markup += '<span class="event-button"></span>';
+        markup += `<button type="button" class="btn" value="${event_data.id}">Join event</button>`;
         markup += '</div>';
         markup += '</div>';
         eventListEl.append(markup);
@@ -677,6 +678,7 @@
         .off('click.evocalendar')
         .on('click.evocalendar', _.selectEvent);
     }
+    
     // v1.0.0 - Remove single event to event list
     EvoCalendar.prototype.removeEventList = function(event_data) {
         var _ = this, markup;
