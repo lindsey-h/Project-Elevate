@@ -16,15 +16,18 @@ $.get('/event-data', (data) => {
     $('#evoCalendar').removeClass('event-hide');
     $('#evoCalendar').addClass('sidebar-hide');
     $('.btn').on('click', (evt) => {
-      evt.preventDefault();
+      //evt.preventDefault();
       // console.log($('.btn').val());
       const formInputs = {
         'event-id': $('.btn').val()
       };
     
       $.post('/add-user-to-event', formInputs, (res) => {
-        alert(res);
+        console.log(res);
       });
+
+      $('.btn').text("Leave event")
+      
     
     });
 

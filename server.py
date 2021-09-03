@@ -53,8 +53,9 @@ def add_user_to_event():
     print("*"*20)
     # hard-coded user id for now
     # remove this when retrieving id from session 
-    crud.add_user_to_event(3, event_id)
+    crud.add_user_to_event(1, event_id)
 
+    flash('You are added to an event')
     return "You are added"
 
 
