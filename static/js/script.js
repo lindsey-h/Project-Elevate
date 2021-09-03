@@ -18,12 +18,14 @@ $.get('/event-data', (data) => {
     $('.btn').on('click', (evt) => {
       //evt.preventDefault();
       // console.log($('.btn').val());
+      const btnVal = $('.btn').val();
       const formInputs = {
         'event-id': $('.btn').val()
       };
     
       $.post('/add-user-to-event', formInputs, (res) => {
         console.log(res);
+        $(`.event-desc#${btnVal}`).append(", "+res)
       });
 
       $('.btn').text("Leave event")

@@ -666,7 +666,7 @@
                 users_per_event += u['fname'] + ' ' + u['lname'] + ',  ';
                 }  
             users_per_event = users_per_event.slice(0, -3);
-          markup += '<pre class="event-desc">'+users_per_event+'</pre>';
+          markup += `<p class="event-desc" id="${event_data.id}">${users_per_event}</p>`;
         }
         // markup += '<span class="event-button"></span>';
         markup += `<button type="button" class="btn" value="${event_data.id}">Join event</button>`;

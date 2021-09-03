@@ -56,7 +56,7 @@ def add_user_to_event():
     crud.add_user_to_event(1, event_id)
 
     flash('You are added to an event')
-    return "You are added"
+    return "Firstname Lname"
 
 
 

@@ -25,6 +25,12 @@
 
     <p><a href='/add-event'><button>Add event</button></a></p>
 
+    {% for msg in get_flashed_messages() %}
+      <p class="flash-msg">
+        {{ msg }}
+      </p>
+    {% endfor %}
+
     <!-- {{ cal|safe }} -->
 
     <div id="calendar-container" style="width: 900px; margin-left:auto; margin-right: auto;">
