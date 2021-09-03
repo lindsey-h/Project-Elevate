@@ -1,5 +1,6 @@
 "use strict";
-
+// import React from 'react';
+// import ReactDOM from 'react-dom';
 
 
 $.get('/event-data', (data) => {
@@ -15,6 +16,10 @@ $.get('/event-data', (data) => {
     $('#evoCalendar').removeClass('event-hide');
     $('#evoCalendar').addClass('sidebar-hide');
   })
+
+  // .on('selectEvent', function(activeEvent) {
+  //   $('div.event-info').html("helloooooo");
+  // })
 
   $('#sidebarToggler').on('click', () => {
     $('#evoCalendar').addClass('event-hide');
@@ -42,3 +47,9 @@ $.get('/event-data', (data) => {
 
 // $('#evoCalendar').removeClass('sidebar-hide');
 // $("#evoCalendar").evoCalendar('toggleSidebar',true/false);
+
+
+// ReactDOM.render(
+//   <h1>This is an example.</h1>, 
+//   document.getElementById('event-button')
+// );

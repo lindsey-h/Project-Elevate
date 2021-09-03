@@ -668,6 +668,7 @@
             users_per_event = users_per_event.slice(0, -3);
           markup += '<pre class="event-desc">'+users_per_event+'</pre>';
         }
+        markup += '<span class="event-button"></span>';
         markup += '</div>';
         markup += '</div>';
         eventListEl.append(markup);
