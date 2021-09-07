@@ -51,12 +51,29 @@ def add_user_to_event():
     print("*"*20)
     print(f"event id: {event_id}")
     print("*"*20)
+    # send a boolean 
     # hard-coded user id for now
     # remove this when retrieving id from session 
     crud.add_user_to_event(1, event_id)
 
-    flash('You are added to an event')
-    return "Firstname Lname"
+    # flash('You are added to an event')
+    return "PBJ"
+
+
+@app.route('/remove-user-from-event', methods=['POST'])
+def remove_user_from_event():
+
+    event_id = request.form.get("event-id")
+    print("*"*20)
+    print(f"event id: {event_id}")
+    print("*"*20)
+    # send a boolean 
+    # hard-coded user id for now
+    # remove this when retrieving id from session 
+    crud.remove_user_from_event(1, event_id)
+
+    # flash('You are added to an event')
+    return "PBJ"
 
 
 

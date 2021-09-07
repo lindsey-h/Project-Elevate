@@ -33,6 +33,17 @@ def add_user_to_event(user_id, event_id):
     db.session.commit()
 
 
+def remove_user_from_event(user_id, event_id):
+    """Removes association between User instance and Event instance"""
+
+    users_events = UserEvent.query.filter_by(user_id=user_id, event_id=event_id).all()
+
+    for user_event in users_events:
+        db.session.delete(user_event)
+        db.session.commit()
+    
+
+
 def create_event(title, date, description, duration_in_minutes, is_available=True):
     """Create and return a new event with a User instance."""
 

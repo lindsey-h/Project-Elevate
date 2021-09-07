@@ -13,22 +13,43 @@ $.get('/event-data', (data) => {
   })
 
   .on('selectDate', function(newDate, oldDate) {
+    
     $('#evoCalendar').removeClass('event-hide');
     $('#evoCalendar').addClass('sidebar-hide');
-    $('.btn').on('click', (evt) => {
-      //evt.preventDefault();
-      // console.log($('.btn').val());
+    
+    // Add or remove a user from an event
+    $('.btn.update-event').on('click', (evt) => {
+
       const btnVal = $('.btn').val();
       const formInputs = {
         'event-id': $('.btn').val()
       };
-    
-      $.post('/add-user-to-event', formInputs, (res) => {
-        console.log(res);
-        $(`.event-desc#${btnVal}`).append(", "+res)
-      });
 
-      $('.btn').text("Leave event")
+      if ($('.btn.update-event').text() === "Join event") {
+
+        $.post('/add-user-to-event', formInputs, (res) => {
+          console.log(res);
+          $(`.event-desc#${btnVal}`).append(", "+res)
+        });
+
+        $('.btn.update-event').text("Leave event")
+
+      }
+
+      else {
+
+        $.post('/remove-user-from-event', formInputs, (res) => {
+          console.log(res);
+          $(`.event-desc#${btnVal}`).append(", "+res)
+        });
+
+        $('.btn.update-event').text("Join event")
+
+      }
+    
+      
+
+      
       
     
     });

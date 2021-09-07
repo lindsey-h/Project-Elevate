@@ -669,7 +669,7 @@
           markup += `<p class="event-desc" id="${event_data.id}">${users_per_event}</p>`;
         }
         // markup += '<span class="event-button"></span>';
-        markup += `<button type="button" class="btn" value="${event_data.id}">Join event</button>`;
+        markup += `<button type="button" class="btn update-event" id=${event_data.id} value="${event_data.id}">Join event</button>`;
         markup += '</div>';
         markup += '</div>';
         eventListEl.append(markup);
