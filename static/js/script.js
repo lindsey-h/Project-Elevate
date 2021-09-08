@@ -69,7 +69,7 @@ $.get('/event-data', (data) => {
 
         $.post('/add-user-to-event', formInputs, (res) => {
           console.log(res);
-          $(`.event-desc#${btnVal}`).append(", "+res)
+          $(`.event-desc#${btnVal}`).append(",  "+res)
         });
 
         $(btnTarget).text('Leave event');
@@ -79,10 +79,13 @@ $.get('/event-data', (data) => {
       else if ($(btnTarget).text() === 'Leave event'){
 
         $.post('/remove-user-from-event', formInputs, (res) => {
+          
           let users = $(`#${btnVal}.event-desc`).text()
           console.log(`In the remove event descript is: ${users}`)
-          const removedUser = users.replace(`, ${res}`, '')
+          
+          const removedUser = users.replace(`,  ${res}`, '')
           console.log(`Removed text is: ${removedUser}`)
+          
           $(`#${btnVal}.event-desc`).text(removedUser)
         });
 

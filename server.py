@@ -105,9 +105,8 @@ def remove_user_from_event():
     print("*"*20)
     print(f"event id: {event_id}")
     print("*"*20)
-    # send a boolean 
-    # hard-coded user id for now
-    # remove this when retrieving id from session 
+
+
     crud.remove_user_from_event(current_user.user_id, event_id)
 
     # flash('You are added to an event')
