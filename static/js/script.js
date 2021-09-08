@@ -125,7 +125,13 @@ $.get('/event-data', (data) => {
 
 });
 
+//credit https://stackoverflow.com/questions/4801561/flash-message-fade-effect
 
+$(function() {
+  $('.flash-msg').delay(500).fadeIn('normal', function() {
+     $(this).delay(2000).fadeOut();
+  });
+});
 
 
   // $('div.event-container').on('mouseover', function () {
