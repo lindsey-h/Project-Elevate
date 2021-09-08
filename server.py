@@ -1,7 +1,7 @@
 
 from flask import (Flask, render_template, request, flash, session,
                    redirect, jsonify)
-from flask_login import LoginManager, login_required
+from flask_login import LoginManager, login_required, login_user, logout_user, current_user, UserMixin
 from model import connect_to_db
 import model #take this out when you set up CRUD
 import crud
@@ -37,16 +37,24 @@ def show_home():
     # , quotes=quotes)
 
 
-@app.route('/login')
-def show_login():
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    # get email and password from form
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+    # if user at email exists
+    # and password matches
+    # login_user(user)
+
 
     return render_template('login.html')
 
 
 @app.route('/logout')
+@login_required
 def logout():
-    # remove the username from the session if it's there
-    session.pop('username', None)
+    logout_user()
     return redirect("/login")
 
 
