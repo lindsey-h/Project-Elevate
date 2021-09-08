@@ -21,34 +21,33 @@ $.get('/event-data', (data) => {
     $(`.btn.update-event`).on('click', (evt) => {
 
       const btnId = evt.target.id
+      const btnTarget = `#${btnId}.btn.update-event`
       const btnVal = $('.btn').val();
+      
       const formInputs = {
         'event-id': $('.btn').val()
       };
 
-      console.log("-----")
-      console.log(`${btnId}`)
-      console.log($(`#${btnId}.btn.update-event`).text())
-
-      if ($(`#${btnId}.btn.update-event`).text() === 'Join event') {
+      if ($(btnTarget).text() === 'Join event') {
 
         $.post('/add-user-to-event', formInputs, (res) => {
           console.log(res);
           $(`.event-desc#${btnVal}`).append(", "+res)
         });
 
-        $(`#${btnId}.btn.update-event`).text('Leave event');
+        $(btnTarget).text('Leave event');
 
       }
 
-      else if ($(`#${btnId}.btn.update-event`).text() === 'Leave event'){
+      else if ($(btnTarget).text() === 'Leave event'){
 
         $.post('/remove-user-from-event', formInputs, (res) => {
-          console.log(res);
-          // $(`.event-desc#${btnVal}`).append(", "+res)
+          let users = $(`#${btnVal}.event-desc`).text()
+          const removedUser = users.replace(`, ${res}`, '')
+          $(`#${btnVal}.event-desc`).text(removedUser)
         });
 
-        $(`#${btnId}.btn.update-event`).text('Join event');
+        $(btnTarget).text('Join event');
 
       }
     

@@ -73,7 +73,7 @@ def remove_user_from_event():
     crud.remove_user_from_event(1, event_id)
 
     # flash('You are added to an event')
-    return "remove PBJ"
+    return "PBJ"
 
 
 
