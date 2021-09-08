@@ -145,13 +145,6 @@ def is_user_on_event():
 #     return jsonify([user.serialize() for user in users])
 
 
-# @app.route('/eventsusers')
-# def get_item_by_index():
-#     items = ['apple', 'berry', 'cherry']
-#     idx = int(request.args.get('index', 0))
-
-#     return items[idx]
-
 
 @app.route('/add-event')
 def show_add_event():

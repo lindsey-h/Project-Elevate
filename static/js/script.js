@@ -16,23 +16,27 @@ $.get('/event-data', (data) => {
     
     $('#evoCalendar').removeClass('event-hide');
     $('#evoCalendar').addClass('sidebar-hide');
-    // Get request for user id
-    // Is user on event 
-    // Button text = Leave event 
+
+
+    // -----------------------------------------------
+    // Check if current user belongs to visible events
+    // -----------------------------------------------
     
     const buttons = $(".btn.update-event")
+    // ex: button.id = btn6
+    // ex: button.value = 6
 
+    // Loop over button objects 
     for (let i = 0; i < buttons.length; i++) { 
-    
-      // formInputs[buttons[i].id] = buttons[i].value
-      // // 'btn6': '6'
-      // // 'btn7': '7'
+
+      // Event id and button values are the same
       const formInputs = {
 
         'event-id': buttons[i].value
 
       };
 
+      // Check if event id belongs to user and update button to "Leave event"
       $.post('/is-user-on-event', formInputs, (res) => {
         
         if (res === 'true') {
@@ -46,16 +50,16 @@ $.get('/event-data', (data) => {
 
     };
 
-    
 
-
-    
+    // ------------------------------------
     // Add or remove a user from an event
+    // ------------------------------------
+
     $(`.btn.update-event`).on('click', (evt) => {
 
       const btnId = evt.target.id
       const btnTarget = `#${btnId}.btn.update-event`
-      const btnVal = $('.btn').val();
+      const btnVal = $(`#${btnId}`).val();
       
       const formInputs = {
         'event-id': $('.btn').val()
@@ -76,7 +80,9 @@ $.get('/event-data', (data) => {
 
         $.post('/remove-user-from-event', formInputs, (res) => {
           let users = $(`#${btnVal}.event-desc`).text()
+          console.log(`In the remove event descript is: ${users}`)
           const removedUser = users.replace(`, ${res}`, '')
+          console.log(`Removed text is: ${removedUser}`)
           $(`#${btnVal}.event-desc`).text(removedUser)
         });
 
