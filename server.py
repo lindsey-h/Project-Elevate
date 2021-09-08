@@ -39,6 +39,10 @@ def show_home():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+
+    if request.method == 'GET':
+        return render_template('login.html')
+
     # get email and password from form
     email = request.form.get("email")
     password = request.form.get("password")
@@ -47,14 +51,16 @@ def login():
     if user:
         if user.password == password:
             login_user(user)
-            flask.flash('Logged in successfully.')
             return redirect('/')
-    # if user at email exists
-    # and password matches
-    # login_user(user)
+        else:
+            flash("Incorrect username or password. Please try again.")
+            return redirect('/login')
+    else:
+        flash("Incorrect username or password. Please try again.")
+        return redirect('/login')
 
 
-    return render_template('login.html')
+    
 
 
 @app.route('/logout')
