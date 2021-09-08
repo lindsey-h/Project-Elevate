@@ -18,32 +18,37 @@ $.get('/event-data', (data) => {
     $('#evoCalendar').addClass('sidebar-hide');
     
     // Add or remove a user from an event
-    $('.btn.update-event').on('click', (evt) => {
+    $(`.btn.update-event`).on('click', (evt) => {
 
+      const btnId = evt.target.id
       const btnVal = $('.btn').val();
       const formInputs = {
         'event-id': $('.btn').val()
       };
 
-      if ($('.btn.update-event').text() === "Join event") {
+      console.log("-----")
+      console.log(`${btnId}`)
+      console.log($(`#${btnId}.btn.update-event`).text())
+
+      if ($(`#${btnId}.btn.update-event`).text() === 'Join event') {
 
         $.post('/add-user-to-event', formInputs, (res) => {
           console.log(res);
           $(`.event-desc#${btnVal}`).append(", "+res)
         });
 
-        $('.btn.update-event').text("Leave event")
+        $(`#${btnId}.btn.update-event`).text('Leave event');
 
       }
 
-      else {
+      else if ($(`#${btnId}.btn.update-event`).text() === 'Leave event'){
 
         $.post('/remove-user-from-event', formInputs, (res) => {
           console.log(res);
-          $(`.event-desc#${btnVal}`).append(", "+res)
+          // $(`.event-desc#${btnVal}`).append(", "+res)
         });
 
-        $('.btn.update-event').text("Join event")
+        $(`#${btnId}.btn.update-event`).text('Join event');
 
       }
     
