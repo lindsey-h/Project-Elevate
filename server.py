@@ -24,7 +24,7 @@ def load_user(user_id):
     return crud.get_user_by_id(user_id)
 
 @app.route('/')
-# @login_required
+@login_required
 def show_home():
 
     events = model.Event.query.all()
@@ -42,7 +42,13 @@ def login():
     # get email and password from form
     email = request.form.get("email")
     password = request.form.get("password")
+    user = crud.get_user_by_email(email)
 
+    if user:
+        if user.password == password:
+            login_user(user)
+            flask.flash('Logged in successfully.')
+            return redirect('/')
     # if user at email exists
     # and password matches
     # login_user(user)
@@ -80,14 +86,16 @@ def add_user_to_event():
     event_id = request.form.get("event-id")
     print("*"*20)
     print(f"event id: {event_id}")
+    print(current_user.user_id)
     print("*"*20)
     # send a boolean 
     # hard-coded user id for now
     # remove this when retrieving id from session 
-    crud.add_user_to_event(1, event_id)
+    print(current_user.user_id)
+    crud.add_user_to_event(current_user.user_id, event_id)
 
     # flash('You are added to an event')
-    return "PBJ"
+    return current_user.fname
 
 
 @app.route('/remove-user-from-event', methods=['POST'])
@@ -100,10 +108,10 @@ def remove_user_from_event():
     # send a boolean 
     # hard-coded user id for now
     # remove this when retrieving id from session 
-    crud.remove_user_from_event(1, event_id)
+    crud.remove_user_from_event(current_user.user_id, event_id)
 
     # flash('You are added to an event')
-    return "PBJ"
+    return current_user.fname
 
 
 

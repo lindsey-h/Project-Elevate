@@ -2,11 +2,12 @@
 
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     """A user"""
 
     __tablename__ = "users"
@@ -23,6 +24,14 @@ class User(db.Model):
     events = db.relationship("Event",  # The orm object we are relating to
                            secondary="users_events",  # The association table
                            backref="users")
+
+
+    def get_id(self):
+        try:
+            return self.user_id
+        except AttributeError:
+            raise NotImplementedError('No `id` attribute - override `get_id`')
+
 
     def serialize(self):
         
