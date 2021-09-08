@@ -16,6 +16,39 @@ $.get('/event-data', (data) => {
     
     $('#evoCalendar').removeClass('event-hide');
     $('#evoCalendar').addClass('sidebar-hide');
+    // Get request for user id
+    // Is user on event 
+    // Button text = Leave event 
+    
+    const buttons = $(".btn.update-event")
+
+    for (let i = 0; i < buttons.length; i++) { 
+    
+      // formInputs[buttons[i].id] = buttons[i].value
+      // // 'btn6': '6'
+      // // 'btn7': '7'
+      const formInputs = {
+
+        'event-id': buttons[i].value
+
+      };
+
+      $.post('/is-user-on-event', formInputs, (res) => {
+        
+        if (res === 'true') {
+          console.log("This user is on the event")
+          const btnTarget = `#${buttons[i].id}.btn.update-event`
+          $(btnTarget).text('Leave event');  
+
+        }
+
+      });
+
+    };
+
+    
+
+
     
     // Add or remove a user from an event
     $(`.btn.update-event`).on('click', (evt) => {

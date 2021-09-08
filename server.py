@@ -95,7 +95,7 @@ def add_user_to_event():
     crud.add_user_to_event(current_user.user_id, event_id)
 
     # flash('You are added to an event')
-    return current_user.fname
+    return f"{current_user.fname} {current_user.lname}"
 
 
 @app.route('/remove-user-from-event', methods=['POST'])
@@ -111,8 +111,23 @@ def remove_user_from_event():
     crud.remove_user_from_event(current_user.user_id, event_id)
 
     # flash('You are added to an event')
-    return current_user.fname
+    return f"{current_user.fname} {current_user.lname}"
 
+
+@app.route('/is-user-on-event', methods=['POST'])
+def is_user_on_event():
+
+    event_id = int(request.form.get("event-id"))
+    print("&"*20)
+    print(f'js sent event id: {event_id}')
+    print("&"*20)
+
+    for event in current_user.events:
+        print(f'In the loop server id: {event.event_id}')
+        if event_id == event.event_id:
+            return "true"
+
+    return "false"
 
 
 # @app.route('/users-by-event')
