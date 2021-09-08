@@ -1,6 +1,7 @@
 
 from flask import (Flask, render_template, request, flash, session,
                    redirect, jsonify)
+from flask_login import LoginManager, login_required
 from model import connect_to_db
 import model #take this out when you set up CRUD
 import crud
@@ -14,8 +15,16 @@ app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "/login"
+
+@login_manager.user_loader
+def load_user(user_id):
+    return crud.get_user_by_id(user_id)
 
 @app.route('/')
+# @login_required
 def show_home():
 
     events = model.Event.query.all()
@@ -26,6 +35,19 @@ def show_home():
 
     return render_template('home.html', events=events, cal=cal) 
     # , quotes=quotes)
+
+
+@app.route('/login')
+def show_login():
+
+    return render_template('login.html')
+
+
+@app.route('/logout')
+def logout():
+    # remove the username from the session if it's there
+    session.pop('username', None)
+    return redirect("/login")
 
 
 @app.route('/event-data')

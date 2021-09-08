@@ -51,15 +51,12 @@ $.get('/event-data', (data) => {
 
       }
     
-      
-
-      
-      
-    
     });
 
   })
 
+  // ? ASK IN QUEUE ?
+  // How to have this load without clicking on an event date 
   $(document).ready(function(){
     $(".btn").click(function(){
       console.log('clicked on me');

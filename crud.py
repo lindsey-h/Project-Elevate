@@ -19,6 +19,11 @@ def get_all_users():
     return User.query.all()
 
 
+def get_user_by_id(user_id):
+
+    return User.query.get(user_id)
+
+
 def get_users_by_event(event_id):
 
     return Event.query.get(event_id).users
