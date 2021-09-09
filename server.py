@@ -10,6 +10,8 @@ import requests
 import calendar 
 from calendar import HTMLCalendar
 from datetime import datetime
+import sms
+import os
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -30,8 +32,8 @@ def show_home():
     events = model.Event.query.all()
     # res = requests.get("https://zenquotes.io/api/quotes/")
     # quotes = res.json()
-
     cal = HTMLCalendar().formatmonth(2021, 8)
+
 
     return render_template('home.html', events=events, cal=cal) 
     # , quotes=quotes)
@@ -133,6 +135,17 @@ def is_user_on_event():
             return "true"
 
     return "false"
+
+
+@app.route("/sms", methods=['POST', 'GET'])
+def send_sms():
+
+    # Get these fromt the server for the current user
+    receiver = "4158575066"
+    sender = "16824631868"
+    message = "Hi hello hay is for horses"
+
+    sms.send_sms(receiver, sender, message)
 
 
 # @app.route('/users-by-event')
