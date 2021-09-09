@@ -140,12 +140,15 @@ def is_user_on_event():
 @app.route("/sms", methods=['POST', 'GET'])
 def send_sms():
 
-    # Get these fromt the server for the current user
+    # Get these from the server for the current user
     receiver = "4158575066"
     sender = "16824631868"
     message = "Hi hello hay is for horses"
 
     sms.send_sms(receiver, sender, message)
+    flash("Your message has been sent to your contacts.")
+
+    return redirect('/')
 
 
 # @app.route('/users-by-event')
