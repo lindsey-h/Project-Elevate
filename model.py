@@ -25,6 +25,8 @@ class User(db.Model, UserMixin):
                            secondary="users_events",  # The association table
                            backref="users")
 
+    message = db.relationship("Message", uselist=False)
+
 
     def get_id(self):
         try:
@@ -53,7 +55,8 @@ class Event(db.Model):
                         autoincrement=True,
                         primary_key=True)
     title = db.Column(db.String, nullable=False)                    
-    date = db.Column(db.DateTime, nullable=False)
+    start_time = db.Column(db.DateTime, nullable=False)
+    end_time = db.Column(db.DateTime, nullable=False)
     description = db.Column(db.Text)
     duration_in_minutes = db.Column(db.Integer)
     is_available = db.Column(db.Boolean, default=True, nullable=False)
@@ -143,6 +146,22 @@ class Contact(db.Model):
         return f"<Contact contact_id={self.contact_id} fname={self.fname} lname={self.lname}>"
 
 
+class Message(db.Model):
+    """A pre-written message used to alert contacts. One message per User instance."""
+
+    __tablename__ = "messages"
+
+    user_id = db.Column(db.Integer,
+                        db.ForeignKey("users.user_id"),
+                        primary_key=True)  
+    message = db.Column(db.String)
+
+    user = db.relationship("User", uselist=False)
+
+    def __repr__(self):
+        return f"<Contact contact_id={self.contact_id} fname={self.fname} lname={self.lname}>"
+
+
 # ------------- Association Tables ---------------
 
 
@@ -156,6 +175,7 @@ class UserEvent(db.Model):
                         primary_key=True)
     user_id = db.Column(db.ForeignKey("users.user_id"))
     event_id = db.Column(db.ForeignKey("events.event_id"))
+    is_author = db.Column(db.Boolean, default=False, nullable=False)
 
 
 # ------------- Connect to DB ---------------
