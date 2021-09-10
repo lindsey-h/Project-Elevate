@@ -5,12 +5,16 @@
 
 $.get('/event-data', (data) => {
 
+  // Create the calendar
+
   $('#evoCalendar').evoCalendar({
     calendarEvents: data,
     todayHighlight: true,
     sidebarToggler: true,
     sidebarDisplayDefault: false,
   })
+
+  // Toggle the side bar and event bar so only one shows at a time
 
   .on('selectDate', function(newDate, oldDate) {
     

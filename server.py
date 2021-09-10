@@ -62,8 +62,6 @@ def login():
         return redirect('/login')
 
 
-    
-
 
 @app.route('/logout')
 @login_required
@@ -75,7 +73,10 @@ def logout():
 @app.route('/event-data')
 def send_event_data():
 
-    events = crud.get_all_events()
+    events = crud.get_all_events_by_author(current_user.user_id)
+    print("*-"*20)
+    print(events)
+    print("*-"*20)
 
     events_and_users = []
 

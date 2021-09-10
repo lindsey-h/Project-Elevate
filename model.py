@@ -60,6 +60,7 @@ class Event(db.Model):
     end_time = db.Column(db.DateTime, nullable=False)
     is_available = db.Column(db.Boolean, default=True, nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
+    
 
     def convert_time(self, time):
 

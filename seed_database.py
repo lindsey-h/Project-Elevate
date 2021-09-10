@@ -50,7 +50,8 @@ for line in events_file:
     print(f"{title} {description} {start_time} {end_time}")
     print("-*"*20)
     
-    crud.create_event(title, description, date_to_object(start_time), date_to_object(end_time), author_id)
+    event = crud.create_event(title, description, date_to_object(start_time), date_to_object(end_time), author_id)
+    # Do I need to?? crud.add_user_to_event(author_id, event)
 
 crud.create_event("Go for a walk", "Presidio", date_to_object("2021-08-22 15:00"), date_to_object("2021-08-22 17:00"), author_id_2)
 crud.create_event("Go for a walk", "Presidio", date_to_object("2021-08-23 15:00"), date_to_object("2021-08-23 17:00"), author_id_2)

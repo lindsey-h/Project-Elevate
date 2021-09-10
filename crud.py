@@ -74,6 +74,19 @@ def get_all_events():
     return Event.query.all()
 
 
+def get_all_events_by_author(user_id):
+
+    all_events = []
+
+    events = Event.query.all()
+
+    for event in events:
+        if event.author_id == user_id:
+            all_events.append(event)
+
+    return all_events
+
+
 def update_event_availability(event_id, boolean):
 
     event = Event.query.get(event_id)
