@@ -36,7 +36,7 @@ Toby | Flenderson | tobysad@dunder.com | beets
 
 def date_to_object(date_string):
 
-    # 2021-09-09 18:00
+    # String formate is 2021-09-09 18:00
     datetime_object = datetime.strptime('date_string', '%Y-%m-%d %H:%M')
 
 events_file = open('events.txt')
