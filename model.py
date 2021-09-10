@@ -27,7 +27,7 @@ class User(db.Model, UserMixin):
 
     message = db.relationship("Message", uselist=False)
 
-
+    # Needed for Flask Log In 
     def get_id(self):
         try:
             return self.user_id
@@ -55,21 +55,37 @@ class Event(db.Model):
                         autoincrement=True,
                         primary_key=True)
     title = db.Column(db.String, nullable=False)                    
+    description = db.Column(db.Text)
     start_time = db.Column(db.DateTime, nullable=False)
     end_time = db.Column(db.DateTime, nullable=False)
-    description = db.Column(db.Text)
-    duration_in_minutes = db.Column(db.Integer)
     is_available = db.Column(db.Boolean, default=True, nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
+
+    author = db.relationship("User", backref="events")
+
+    def convert_time(self, time):
+
+        time = time.strftime("%I:%S %p")
+
+        if time[0] == "0":
+            time = time[1:]
+
+        return time
 
 
     def serialize(self):
+
+        start = convert_time(self.start_time)
+        end = convert_time(self.end_time)
         
+        # might need to change date format without time? check if it breaks calendar creation in js
         return { "id": self.event_id,
                  "name": self.title,
-                 "date": self.date,
+                 "date": self.start_time,
                  "type": "event",
                  "description": self.description,
-                 "duration_in_minutes": self.duration_in_minutes,
+                 "start-time": start,
+                 "end-time": end,
                  "is_available": self.is_available,
                  "color": "#5fb5c2" 
                 }
@@ -159,7 +175,25 @@ class Message(db.Model):
     user = db.relationship("User", uselist=False)
 
     def __repr__(self):
-        return f"<Contact contact_id={self.contact_id} fname={self.fname} lname={self.lname}>"
+        return f"<Message message_id={self.message_id} message={self.message}>"
+
+
+
+class Author(db.Model):
+    """Association between Author and Event"""
+
+    __tablename__ = "authors"
+
+    author_id = db.Column(db.Integer,
+                        autoincrement=True,
+                        primary_key=True)   
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
+
+
+    user = db.relationship("User", backref="posts")
+
+    def __repr__(self):
+        return f"<Post post_id={self.post_id} text={self.text}>"
 
 
 # ------------- Association Tables ---------------
@@ -175,7 +209,6 @@ class UserEvent(db.Model):
                         primary_key=True)
     user_id = db.Column(db.ForeignKey("users.user_id"))
     event_id = db.Column(db.ForeignKey("events.event_id"))
-    is_author = db.Column(db.Boolean, default=False, nullable=False)
 
 
 # ------------- Connect to DB ---------------

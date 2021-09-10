@@ -659,7 +659,7 @@
         if (event_data.badge) markup += '<span>'+event_data.badge+'</span>';
         markup += '</p>'
         if (event_data.description) markup += '<p class="event-desc">'+event_data.description+'</p>';
-        if (event_data.duration_in_minutes) markup += '<p class="event-desc">'+event_data.duration_in_minutes+' minutes</p>';
+        if (event_data.start_time) markup += '<p class="event-desc">'+event_data.start_time+ - +event_data.end_time+' </p>';
         if (event_data.users) {
             let users_per_event = '';
             for (const u of event_data.users) {

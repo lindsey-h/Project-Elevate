@@ -182,13 +182,12 @@ def add_event():
     start_time = request.form.get('start-time')
     end_time = request.form.get('end-time')
 
-    start_datetime = date + " " + start_time #'2020-12-12 18:06'
-    datetime_object = datetime.strptime(start_datetime, '%Y-%m-%d %H:%M')
-    crud.create_event(title, datetime_object, description, 60)
-
-    print("*"*20)
-    print(title, date, description, start_time, end_time)
-    print("*"*20)
+    start_datetime = date + " " + start_time #'2020-12-12 18:00'
+    end_datetime = date + " " + end_time #'2020-12-12 19:00'
+    start_datetime_object = datetime.strptime(start_datetime, '%Y-%m-%d %H:%M')
+    end_datetime_object = datetime.strptime(end_datetime, '%Y-%m-%d %H:%M')
+    
+    crud.create_event(title, description, start_datetime_object, end_datetime_object)
 
     return redirect("/")
 

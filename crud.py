@@ -54,13 +54,14 @@ def remove_user_from_event(user_id, event_id):
     
 
 
-def create_event(title, date, description, duration_in_minutes, is_available=True):
-    """Create and return a new event with a User instance."""
+def create_event(title, description, start_time, end_time, author_id):
+    """Create and return a new event."""
 
-    event = Event(title=title, date=date, 
+    event = Event(title=title, 
                   description=description, 
-                  duration_in_minutes=duration_in_minutes, 
-                  is_available=is_available)
+                  start_time=start_time, 
+                  end_time=end_time,
+                  author_id=author_id)
 
     db.session.add(event)
     db.session.commit()
