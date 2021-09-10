@@ -187,7 +187,7 @@ def add_event():
     start_datetime_object = datetime.strptime(start_datetime, '%Y-%m-%d %H:%M')
     end_datetime_object = datetime.strptime(end_datetime, '%Y-%m-%d %H:%M')
     
-    crud.create_event(title, description, start_datetime_object, end_datetime_object)
+    crud.create_event(title, description, start_datetime_object, end_datetime_object, current_user.user_id)
 
     return redirect("/")
 

@@ -2,34 +2,31 @@
 
 import os
 import json
-from random import choice, randint 
+from random import choice, randint, choices
 from datetime import datetime 
 import crud, model, server
 
-# remove #
-os.system('dropdb #elevate')
-os.system('createdb #elevate')
+os.system('dropdb elevate')
+os.system('createdb elevate')
 
 model.connect_to_db(server.app)
 model.db.create_all()
 
 
-##### Create Users #####
+# ---------------- Create Users ----------------- # 
 
-# for line in txt file
-line_list = string split at | 
-fname, lname, email, password = line 
-# for line in txt file
-# fname, lname, email, password = line 
-# crud.create_user(fname, lname, email, password)
+users_file = open('users.txt')
 
-Pam | Beasley | pbandj@dunder.com | beets
-Jim | Halpert | jimhalps@dunder.com | beets
-Dwight | Schrutte | dwight@dunder.com | beets
-Michael | Scoott | worldsbestboss@dunder.com | beets
-Toby | Flenderson | tobysad@dunder.com | beets
+for line in users_file:
+    
+    line = line.rstrip()
+    fname, lname, email, password = line.split(" | ")
+    print("-*"*20)
+    print(f"{fname} {lname} {email} {password}")
+    print("-*"*20)
+    
+    crud.create_user(fname, lname, email, password)
 
-#crud get all users
 
 
 # ---------------- Create Events ----------------- # 
@@ -37,32 +34,44 @@ Toby | Flenderson | tobysad@dunder.com | beets
 def date_to_object(date_string):
 
     # String formate is 2021-09-09 18:00
-    datetime_object = datetime.strptime('date_string', '%Y-%m-%d %H:%M')
+    datetime_object = datetime.strptime(date_string, '%Y-%m-%d %H:%M')
+    return datetime_object
 
 events_file = open('events.txt')
 
-author_id = model.User.query.filter_by(fname="Pam").first()
-author_id_2 = model.User.query.filter_by(fname="Jim").first()
+author_id = model.User.query.filter_by(fname="Pam").first().user_id
+author_id_2 = model.User.query.filter_by(fname="Jim").first().user_id
 
 for line in events_file:
     
     line = line.rstrip()
     title, description, start_time, end_time = line.split(" | ")
+    print("-*"*20)
+    print(f"{title} {description} {start_time} {end_time}")
+    print("-*"*20)
     
-    create_event(title, description, date_to_object(start_time), date_to_object(end_time), author_id)
+    crud.create_event(title, description, date_to_object(start_time), date_to_object(end_time), author_id)
 
-create_event("Go for a walk", "Presidio", date_to_object("2021-08-22 15:00"), date_to_object("2021-08-22 17:00"), author_id_2)
-create_event("Go for a walk", "Presidio", date_to_object("2021-08-23 15:00"), date_to_object("2021-08-23 17:00"), author_id_2)
-create_event("Go for a walk", "Presidio", date_to_object("2021-08-24 15:00"), date_to_object("2021-08-24 17:00"), author_id_2)
+crud.create_event("Go for a walk", "Presidio", date_to_object("2021-08-22 15:00"), date_to_object("2021-08-22 17:00"), author_id_2)
+crud.create_event("Go for a walk", "Presidio", date_to_object("2021-08-23 15:00"), date_to_object("2021-08-23 17:00"), author_id_2)
+crud.create_event("Go for a walk", "Presidio", date_to_object("2021-08-24 15:00"), date_to_object("2021-08-24 17:00"), author_id_2)
 
 
-##### Link Users with Events #####
+
+# ---------------- Link Events and Users ----------------- # 
 
 # list = Query all users
 # list = Query all events
 # For every user add rand(1-3) events 
-# 
-add_user_to_event(1, 1, True)
+# Query if user != author 
+users = model.User.query.all()
+events = model.Event.query.all()
+
+for user in users:
+    for event in choices(events, k = randint(1,4)):
+        if user.user_id != event.author_id:
+            crud.add_user_to_event(user.user_id, event.event_id)
+
 
 
 

@@ -61,8 +61,6 @@ class Event(db.Model):
     is_available = db.Column(db.Boolean, default=True, nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
 
-    author = db.relationship("User", backref="events")
-
     def convert_time(self, time):
 
         time = time.strftime("%I:%S %p")
@@ -75,8 +73,8 @@ class Event(db.Model):
 
     def serialize(self):
 
-        start = convert_time(self.start_time)
-        end = convert_time(self.end_time)
+        start = self.convert_time(self.start_time)
+        end = self.convert_time(self.end_time)
         
         # might need to change date format without time? check if it breaks calendar creation in js
         return { "id": self.event_id,
@@ -167,33 +165,16 @@ class Message(db.Model):
 
     __tablename__ = "messages"
 
-    user_id = db.Column(db.Integer,
-                        db.ForeignKey("users.user_id"),
+    message_id = db.Column(db.Integer,
+                        autoincrement=True,
                         primary_key=True)  
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
     message = db.Column(db.String)
-
-    user = db.relationship("User", uselist=False)
 
     def __repr__(self):
         return f"<Message message_id={self.message_id} message={self.message}>"
 
 
-
-class Author(db.Model):
-    """Association between Author and Event"""
-
-    __tablename__ = "authors"
-
-    author_id = db.Column(db.Integer,
-                        autoincrement=True,
-                        primary_key=True)   
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
-
-
-    user = db.relationship("User", backref="posts")
-
-    def __repr__(self):
-        return f"<Post post_id={self.post_id} text={self.text}>"
 
 
 # ------------- Association Tables ---------------
