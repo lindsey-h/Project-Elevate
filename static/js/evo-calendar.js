@@ -659,7 +659,7 @@
         if (event_data.badge) markup += '<span>'+event_data.badge+'</span>';
         markup += '</p>'
         if (event_data.description) markup += '<p class="event-desc">'+event_data.description+'</p>';
-        if (event_data.start_time) markup += '<p class="event-desc">'+event_data.start_time+ - +event_data.end_time+' </p>';
+        if (event_data.start_time && event_data.end_time) markup +=`<p class="event-desc">${event_data.start_time} - ${event_data.end_time} </p>`;
         if (event_data.users) {
             let users_per_event = '';
             for (const u of event_data.users) {
@@ -669,7 +669,10 @@
           markup += `<p class="event-desc" id="${event_data.id}">${users_per_event}</p>`;
         }
         // markup += '<span class="event-button"></span>';
-        markup += `<button type="button" class="btn update-event" id=btn${event_data.id} value="${event_data.id}">Join event</button>`;
+        if (event_data){
+            // checking if author_id == current user // dont render the button? 
+            markup += `<button type="button" class="btn update-event" id=btn${event_data.id} value="${event_data.id}">Join event</button>`;
+        }
         markup += '</div>';
         markup += '</div>';
         eventListEl.append(markup);

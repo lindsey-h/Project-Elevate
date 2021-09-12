@@ -53,7 +53,6 @@ def remove_user_from_event(user_id, event_id):
         db.session.commit()
     
 
-
 def create_event(title, description, start_time, end_time, author_id):
     """Create and return a new event."""
 
@@ -84,7 +83,16 @@ def get_all_events_by_author(user_id):
         if event.author_id == user_id:
             all_events.append(event)
 
+    all_events.extend(User.query.get(user_id).events)
+
     return all_events
+
+
+def is_user_author(user_id, event_id):
+
+    event = Event.query.get(event_id)
+
+    return user_id == event.author_id
 
 
 def update_event_availability(event_id, boolean):

@@ -130,6 +130,8 @@ def is_user_on_event():
     print(f'js sent event id: {event_id}')
     print("&"*20)
 
+    # also check that they are not the author
+
     for event in current_user.events:
         print(f'In the loop server id: {event.event_id}')
         if event_id == event.event_id:
