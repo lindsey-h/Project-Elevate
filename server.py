@@ -140,6 +140,11 @@ def is_user_on_event():
     return "false"
 
 
+# @app.route('is-user-author', methods=['POST', 'GET'])
+# def is_author():
+
+
+
 @app.route("/sms", methods=['POST', 'GET'])
 def send_sms():
 

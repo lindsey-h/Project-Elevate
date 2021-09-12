@@ -670,6 +670,9 @@
         }
         // markup += '<span class="event-button"></span>';
         if (event_data){
+            // TODO
+            // Add a hide class 
+            // if eventdata id != current user id
             // checking if author_id == current user // dont render the button? 
             markup += `<button type="button" class="btn update-event" id=btn${event_data.id} value="${event_data.id}">Join event</button>`;
         }

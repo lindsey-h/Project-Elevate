@@ -42,12 +42,17 @@ $.get('/event-data', (data) => {
 
       // Check if event id belongs to user and update button to "Leave event"
       $.post('/is-user-on-event', formInputs, (res) => {
+
+        const btnTarget = `#${buttons[i].id}.btn.update-event`
         
         if (res === 'true') {
           console.log("This user is on the event")
-          const btnTarget = `#${buttons[i].id}.btn.update-event`
           $(btnTarget).text('Leave event');  
 
+        }
+
+        else {
+          $(btnTarget).text('Delete event');
         }
 
       });
@@ -100,6 +105,15 @@ $.get('/event-data', (data) => {
     });
 
   })
+
+  $( document ).ready(function() {
+    // Handler for .ready() called.
+  
+  
+  
+  
+  
+  });
 
   // ? ASK IN QUEUE ?
   // How to have this load without clicking on an event date 
