@@ -1,9 +1,11 @@
 "use strict";
 // import React from 'react';
 // import ReactDOM from 'react-dom';
+let url = window.location.href.split("/");
+let u_id = url[url.length - 1];
 
 
-$.get('/event-data', (data) => {
+$.get('/event-data/' + u_id, (data) => {
 
   // Create the calendar
 

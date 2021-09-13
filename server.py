@@ -25,18 +25,30 @@ login_manager.login_view = "/login"
 def load_user(user_id):
     return crud.get_user_by_id(user_id)
 
+
 @app.route('/')
 @login_required
 def show_home():
 
-    events = model.Event.query.all()
     # res = requests.get("https://zenquotes.io/api/quotes/")
     # quotes = res.json()
-    cal = HTMLCalendar().formatmonth(2021, 8)
+
+    return render_template('home.html') 
+
+@app.route('/<user_id>')
+def user_logged_in_home(user_id):
+
+    return render_template('home.html')
 
 
-    return render_template('home.html', events=events, cal=cal) 
-    # , quotes=quotes)
+@app.route('/users/<user_id>')
+def show_user_details(user_id):
+    
+    user = crud.get_user_by_id(user_id)
+
+    return render_template('public_user.html', user=user)
+
+
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -53,7 +65,7 @@ def login():
     if user:
         if user.password == password:
             login_user(user)
-            return redirect('/')
+            return redirect('/' + str(user.user_id))
         else:
             flash("Incorrect username or password. Please try again.")
             return redirect('/login')
@@ -70,11 +82,12 @@ def logout():
     return redirect("/login")
 
 
-@app.route('/event-data')
-def send_event_data():
+@app.route('/event-data/<user_id>')
+def send_event_data(user_id):
 
-    events = crud.get_all_events_by_author(current_user.user_id)
+    events = crud.get_all_events_by_author(int(user_id))
     print("*-"*20)
+    print(user_id)
     print(events)
     print("*-"*20)
 
@@ -92,18 +105,9 @@ def send_event_data():
 @app.route('/add-user-to-event', methods=['POST'])
 def add_user_to_event():
 
-    event_id = request.form.get("event-id")
-    print("*"*20)
-    print(f"event id: {event_id}")
-    print(current_user.user_id)
-    print("*"*20)
-    # send a boolean 
-    # hard-coded user id for now
-    # remove this when retrieving id from session 
-    print(current_user.user_id)
+    event_id = request.form.get("event-id")  
     crud.add_user_to_event(current_user.user_id, event_id)
 
-    # flash('You are added to an event')
     return f"{current_user.fname} {current_user.lname}"
 
 
@@ -111,14 +115,8 @@ def add_user_to_event():
 def remove_user_from_event():
 
     event_id = request.form.get("event-id")
-    print("*"*20)
-    print(f"event id: {event_id}")
-    print("*"*20)
-
-
     crud.remove_user_from_event(current_user.user_id, event_id)
 
-    # flash('You are added to an event')
     return f"{current_user.fname} {current_user.lname}"
 
 
