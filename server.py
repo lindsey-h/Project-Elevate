@@ -140,6 +140,14 @@ def is_user_on_event():
     return "false"
 
 
+@app.route('/delete-event', methods=['POST', 'GET'])
+def delete_event():
+
+    event_id = int(request.form.get("event-id"))
+    crud.delete_event(event_id)
+
+    return redirect("/")
+
 # @app.route('is-user-author', methods=['POST', 'GET'])
 # def is_author():
 
@@ -156,7 +164,7 @@ def send_sms():
     sms.send_sms(receiver, sender, message)
     flash("Your message has been sent to your contacts.")
 
-    return redirect('/')
+    return redirect("/")
 
 
 # @app.route('/users-by-event')

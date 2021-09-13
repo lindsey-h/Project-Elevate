@@ -73,6 +73,12 @@ def get_all_events():
     return Event.query.all()
 
 
+def delete_event(event_id):
+
+    Event.query.filter_by(event_id=event_id).delete()
+    db.session.commit()
+
+
 def get_all_events_by_author(user_id):
 
     all_events = []

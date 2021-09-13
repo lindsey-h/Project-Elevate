@@ -67,6 +67,7 @@ $.get('/event-data', (data) => {
     $(`.btn.update-event`).on('click', (evt) => {
 
       const btnId = evt.target.id
+      var parent = evt.target.parentElement.id;
       const btnTarget = `#${btnId}.btn.update-event`
       const btnVal = $(`#${btnId}`).val();
       
@@ -99,6 +100,15 @@ $.get('/event-data', (data) => {
         });
 
         $(btnTarget).text('Join event');
+
+      }
+
+      else if ($(btnTarget).text() === 'Delete event'){
+
+        $.post('/delete-event', formInputs, (res) => {
+          
+          $(btnTarget).parent().parent().hide()
+        });
 
       }
     
