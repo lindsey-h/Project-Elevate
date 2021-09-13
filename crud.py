@@ -75,6 +75,7 @@ def get_all_events():
 
 def delete_event(event_id):
 
+    UserEvent.query.filter_by(event_id=event_id).delete()
     Event.query.filter_by(event_id=event_id).delete()
     db.session.commit()
 
