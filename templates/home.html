@@ -7,17 +7,37 @@
 {% endblock %}
 
 {% block body %}
-  <div>  
-    <h1 id="page-title">{{current_user.fname}}'s home page</h1>
+  
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Elevate</a>
+  <h1 id="page-title">{{current_user.fname}}'s home page</h1>
 
-    <p><a href='/add-event'><button>Create event</button></a></p>
-    <p><a href='/logout'><button>Log out</button></a></p>
-    <p><a href='/sms'><button>Send out alert</button></a></p>
+  <p><a href='/add-event'><button>Create event</button></a></p>
+  <p><a href='/logout'><button>Log out</button></a></p>
+  <p><a href='/sms'><button>Send out alert</button></a></p>
+
+</nav>
+
+  <div class="container-fluid">
+
+    <div class="row"></div>
+    <div class="row">
+
+      <div class="col-1"></div>
+
+      <div class="col-10">
+
+        <div id="evoCalendar" ></div>
+
+      </div>
+
+      <div class="col-1"></div>
+
+    </div>
+
+    </div>
+
   </div>
 
-  <div id="calendar-container">
-    <div id="evoCalendar" ></div>
-  </div>
-   
 
 {% endblock %}
