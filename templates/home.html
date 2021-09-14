@@ -8,12 +8,26 @@
 
 {% block body %}
   
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Elevate</a>
-  <h1 id="page-title">Hi, {{current_user.fname}}!</h1>
 
-  <p><a href='/logout'><button>Log out</button></a></p>
+  <div class="d-flex">
 
+    <div class="ml-auto p-2"><h1 id="page-title">Hi, {{current_user.fname}}!</h1></div>
+
+    <div class="ml-auto p-2"><p><a href='/logout'><button>Log out</button></a></p></div>
+
+
+  </div>
+
+</nav> -->
+
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">Elevate</a>
+  <div class="d-flex">
+    <h3 id="page-title align-self-center" style="display: inline; margin-right: 10px">Hi, {{current_user.fname}}!</h3>
+    <button type="button" class="btn update-event btn-outline-primary btn-sm align-self-center" href="/logout">Log out</button>
+  </div>
 </nav>
 
   <div class="container-fluid">
