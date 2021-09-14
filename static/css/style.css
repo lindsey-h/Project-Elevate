@@ -23,6 +23,8 @@ body {
 
 .navbar {
   margin-bottom: 60px;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .bg-light {

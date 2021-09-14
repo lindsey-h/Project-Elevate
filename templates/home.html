@@ -12,19 +12,29 @@
   <a class="navbar-brand" href="#">Elevate</a>
   <h1 id="page-title">Hi, {{current_user.fname}}!</h1>
 
-  <p><a href='/add-event'><button>Create event</button></a></p>
   <p><a href='/logout'><button>Log out</button></a></p>
-  <p><a href='/sms'><button>Send out alert</button></a></p>
 
 </nav>
 
   <div class="container-fluid">
 
-    <div class="row"></div>
+    <div class="row">
+      
+      <div class="col-1"></div>
+      
+      <div class="col-10">
+        <a href='/add-event'><button type="button" class="btn update-event btn-primary btn-sm">Create event</button></a>
+        <a href='/sms'><button type="button" class="btn update-event btn-primary btn-sm">Send alert</button></a>
+      </div>
+      
+      <div class="col-1"></div>
+
+    </div>
+
     <div class="row">
 
       <div class="col-1"></div>
-
+        
       <div class="col-10">
 
         <div id="evoCalendar" ></div>
