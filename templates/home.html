@@ -7,17 +7,17 @@
 {% endblock %}
 
 {% block body %}
-    
+  <div>  
     <h1 id="page-title">{{current_user.fname}}'s home page</h1>
 
     <p><a href='/add-event'><button>Create event</button></a></p>
     <p><a href='/logout'><button>Log out</button></a></p>
     <p><a href='/sms'><button>Send out alert</button></a></p>
+  </div>
 
-
-    <div id="calendar-container" style="width: 900px; margin-left:auto; margin-right: auto;">
-        <div id="evoCalendar" ></div>
-    </div>
+  <div id="calendar-container">
+    <div id="evoCalendar" ></div>
+  </div>
    
 
 {% endblock %}
