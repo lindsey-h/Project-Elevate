@@ -23,9 +23,10 @@
 </nav> -->
 
 <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand">Elevate</a>
+  <img src="static/img/logo.png" class="navbar-brand">
   <div class="d-flex">
-    <h3 id="page-title align-self-center" style="display: inline; margin-right: 10px">Hi, {{current_user.fname}}!</h3>
+    <!-- <p class="align-self-center" style="display: inline; margin: 0px 10px">Here's a nice inspirational quote for you to read.</p> -->
+    <h3 id="page-title" class="align-self-center" style="display: inline; margin-right: 10px">Hi, {{current_user.fname}}!</h3>
     <button type="button" class="btn update-event btn-outline-primary btn-sm align-self-center" href="/logout">Log out</button>
   </div>
 </nav>
