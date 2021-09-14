@@ -87,6 +87,7 @@ def get_all_events_by_author(user_id):
     events = Event.query.all()
 
     for event in events:
+        print(event)
         if event.author_id == user_id:
             all_events.append(event)
 

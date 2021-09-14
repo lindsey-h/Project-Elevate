@@ -53,9 +53,9 @@ for line in events_file:
     event = crud.create_event(title, description, date_to_object(start_time), date_to_object(end_time), author_id)
     # ?? crud.add_user_to_event(author_id, event.event_id)
 
-crud.create_event("Go for a walk", "Presidio", date_to_object("2021-08-22 15:00"), date_to_object("2021-08-22 17:00"), author_id_2)
-crud.create_event("Go for a walk", "Presidio", date_to_object("2021-08-23 15:00"), date_to_object("2021-08-23 17:00"), author_id_2)
-crud.create_event("Go for a walk", "Presidio", date_to_object("2021-08-24 15:00"), date_to_object("2021-08-24 17:00"), author_id_2)
+crud.create_event("Go for a walk", "Presidio", date_to_object("2021-09-22 15:00"), date_to_object("2021-09-22 17:00"), author_id_2)
+crud.create_event("Go for a walk", "Presidio", date_to_object("2021-09-23 15:00"), date_to_object("2021-09-23 17:00"), author_id_2)
+crud.create_event("Go for a walk", "Presidio", date_to_object("2021-09-24 15:00"), date_to_object("2021-09-24 17:00"), author_id_2)
 
 
 

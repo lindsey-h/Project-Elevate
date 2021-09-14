@@ -2,10 +2,12 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom';
 let url = window.location.href.split("/");
-let u_id = url[url.length - 1];
+let uId = url[url.length - 1];
+let isUserPage = url[url.length - 2];
 
 
-$.get('/event-data/' + u_id, (data) => {
+
+$.get('/event-data/' + uId, (data) => {
 
   // Create the calendar
 
@@ -47,13 +49,15 @@ $.get('/event-data/' + u_id, (data) => {
 
         const btnTarget = `#${buttons[i].id}.btn.update-event`
         
+        // if they are an attendee 
         if (res === 'true') {
           console.log("This user is on the event")
           $(btnTarget).text('Leave event');  
 
         }
 
-        else {
+        // if they are the author and not on a /users page 
+        else if (res === 'false' && isUserPage !== 'users') {
           $(btnTarget).text('Delete event');
         }
 

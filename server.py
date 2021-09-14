@@ -1,6 +1,6 @@
 
 from flask import (Flask, render_template, request, flash, session,
-                   redirect, jsonify)
+                   redirect, jsonify, abort)
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user, UserMixin
 from model import connect_to_db
 import model #take this out when you set up CRUD
@@ -37,6 +37,17 @@ def show_home():
 
 @app.route('/<user_id>')
 def user_logged_in_home(user_id):
+
+    #if user_id not in database
+    # abort(404)
+    try: 
+        user_id=int(user_id)
+        if not crud.get_user_by_id(user_id):
+            abort(404)
+    except ValueError:
+        abort(404)
+
+    
 
     return render_template('home.html')
 
@@ -204,6 +215,12 @@ def add_event():
     crud.create_event(title, description, start_datetime_object, end_datetime_object, current_user.user_id)
 
     return redirect("/")
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
 
 
 if __name__ == "__main__":
