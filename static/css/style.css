@@ -29,3 +29,14 @@ body {
   /* background-color: rgba(255,255,255, .5); */
   background-color: rgba(255,255,255, .5) !important;
 }
+
+.btn-outline-primary {
+  border-color: #5fb5c2 !important;
+  color: #3d7f89 !important;
+}
+
+.btn-outline-primary:hover {
+  border-color: #5fb5c2 !important;
+  background-color: #5fb5c2 !important;
+  color: #fff !important;
+}
