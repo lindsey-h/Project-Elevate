@@ -59,6 +59,14 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff !important;
 }
 
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.1rem rgb(255 255 255);
+}
+
+.btn-outline-primary:focus {
+  box-shadow: 0 0 0 0.1rem rgb(13 110 253 / 25%);
+}
+
 .form-container {
   background-color: #fff;
   border-radius: 10px;
