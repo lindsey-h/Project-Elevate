@@ -42,3 +42,23 @@ body {
   background-color: #5fb5c2 !important;
   color: #fff !important;
 }
+
+.btn-primary {
+  background-color: #3d7f89 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.btn-primary:hover {
+  border: none !important;
+  background-color: #5fb5c2 !important;
+  color: #fff !important;
+}
+
+.form-container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 50px -20px #8773c1;
+  margin: 2em;
+  padding: 2em;
+}
