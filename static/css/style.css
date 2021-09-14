@@ -16,7 +16,7 @@ body {
             radial-gradient(ellipse at right, #bce1f0, transparent),
             radial-gradient(ellipse at left, #bce1f0, transparent),
             radial-gradient(ellipse, rgb(255, 149, 0), transparent),
-            radial-gradient(circle at 95% 5%, rgb(255, 149, 0), transparent);
+            radial-gradient(circle at 95% 5%, rgb(255, 212, 151), transparent);
 }
 
 /* radial-gradient(circle at 100%, rgb(247, 228, 214), rgb(221, 230, 255) 50%, rgb(255, 241, 241) 75%, rgb(169, 180, 225) 75%) */
