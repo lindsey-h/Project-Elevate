@@ -99,3 +99,20 @@ h1, h2, h3, h4, h5, h6 {
   margin: 2em;
   padding: 2em;
 }
+
+.form-group.row {
+  margin-bottom: 20px;
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+}
+
+.form-group button {
+  width: 120px;
+  margin-right: .75rem;
+}
+
+/* .col-sm-10 {
+  padding-right: 0;
+} */
