@@ -62,13 +62,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #public .btn-outline-primary {
-  border-color: #5fb5c2 !important;
-  color: #3d7f89 !important;
+  border-color: #ff9565 !important;
+  color: #e9743e !important;
 }
 
 #public .btn-outline-primary:hover {
-  border-color: #5fb5c2 !important;
-  background-color: #5fb5c2 !important;
+  border-color: #ff9565 !important;
+  background-color: #ff9565 !important;
   color: #fff !important;
 }
 
