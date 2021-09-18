@@ -85,8 +85,7 @@ class Event(db.Model):
                  "description": self.description,
                  "start_time": start,
                  "end_time": end,
-                 "is_available": self.is_available,
-                 "color": "#5fb5c2" 
+                 "is_available": self.is_available
                 }
 
     def __repr__(self):

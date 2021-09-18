@@ -7,20 +7,17 @@
 {% endblock %}
 
 {% block body %}
+<body id="public">
 
-<nav class="navbar navbar-light bg-light">
-  <img src="static/img/logo.png" class="navbar-brand">
-</nav>
+  <nav class="navbar navbar-light bg-light">
+    <a href="/"><img src="/static/img/logo.png" class="navbar-brand"></a>
+    <h4>{{user.fname}} {{user.lname}}'s calendar</h4>
+  </nav>
     
-    <div class="row">
-
-      <h3 id="page-title" style="margin-top: 20px; margin-bottom: 30px; text-align: center; color: #6049a7">{{user.fname}} {{user.lname}}'s calendar</h3>
-
-    </div>
-    
-
     <div id="calendar-container" style="width: 900px; margin-left:auto; margin-right: auto;">
-        <div id="evoCalendar" ></div>
+        <div id="evoCalendar" class="orange" ></div>
     </div>
+
+  </body>
     
 {% endblock %}

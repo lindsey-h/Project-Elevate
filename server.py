@@ -33,7 +33,8 @@ def show_home():
     # res = requests.get("https://zenquotes.io/api/quotes/")
     # quotes = res.json()
 
-    return render_template('home.html') 
+    uid = current_user.user_id
+    return redirect(f'/{uid}') 
 
 @app.route('/<user_id>')
 def user_logged_in_home(user_id):
@@ -46,8 +47,6 @@ def user_logged_in_home(user_id):
             abort(404)
     except ValueError:
         abort(404)
-
-    
 
     return render_template('home.html')
 

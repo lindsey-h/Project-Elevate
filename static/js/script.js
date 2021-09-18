@@ -119,7 +119,13 @@ $.get('/event-data/' + uId, (data) => {
     
     });
 
+    
+ 
+
   })
+
+  $("#evoCalendar.orange").evoCalendar('setTheme', 'Orange Coral');
+
 
   $( document ).ready(function() {
     // Handler for .ready() called.

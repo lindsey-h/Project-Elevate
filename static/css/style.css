@@ -19,6 +19,16 @@ body {
             radial-gradient(circle at 95% 5%, rgb(255, 212, 151), transparent);
 }
 
+body#public{
+  background: radial-gradient(ellipse at top, #ffe4e4, transparent),
+            radial-gradient(ellipse at right, #f8ffe6, transparent),
+            radial-gradient(ellipse at left, #f4d2ff, transparent),
+            radial-gradient(ellipse, rgb(255, 149, 0), transparent),
+            radial-gradient(circle at 95% 5%, rgb(255, 212, 151), transparent);
+
+}
+
+
 /* radial-gradient(circle at 100%, rgb(247, 228, 214), rgb(221, 230, 255) 50%, rgb(255, 241, 241) 75%, rgb(169, 180, 225) 75%) */
 
 .navbar {
@@ -29,6 +39,10 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0;
+}
+
+.row#calendar-actions {
+  margin-bottom: 20px;
 }
 
 .bg-light {
@@ -42,6 +56,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-outline-primary:hover {
+  border-color: #5fb5c2 !important;
+  background-color: #5fb5c2 !important;
+  color: #fff !important;
+}
+
+#public .btn-outline-primary {
+  border-color: #5fb5c2 !important;
+  color: #3d7f89 !important;
+}
+
+#public .btn-outline-primary:hover {
   border-color: #5fb5c2 !important;
   background-color: #5fb5c2 !important;
   color: #fff !important;

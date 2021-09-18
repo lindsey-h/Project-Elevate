@@ -23,7 +23,7 @@
 </nav> -->
 
 <nav class="navbar navbar-light bg-light">
-  <img src="static/img/logo.png" class="navbar-brand">
+  <img src="/static/img/logo.png" class="navbar-brand">
   <div class="d-flex">
     <!-- <p class="align-self-center" style="display: inline; margin: 0px 10px">Here's a nice inspirational quote for you to read.</p> -->
     <h3 id="page-title" class="align-self-center" style="display: inline; margin-right: 10px">Hi, {{current_user.fname}}!</h3>
@@ -33,13 +33,15 @@
 
   <div class="container-fluid">
 
-    <div class="row">
+    <div class="row" id="calendar-actions">
       
       <div class="col-1"></div>
       
-      <div class="col-10">
-        <a href='/add-event'><button type="button" class="btn update-event btn-primary btn-sm">Create event</button></a>
-        <a href='/sms'><button type="button" class="btn update-event btn-primary btn-sm">Send alert</button></a>
+      <div class="col-10" >
+        <div>
+          <a href='/add-event'><button type="button" class="btn update-event btn-primary btn-sm">Create event</button></a>
+          <a href='/sms'><button type="button" class="btn update-event btn-primary btn-sm">Send alert</button></a>
+      </div>
       </div>
       
       <div class="col-1"></div>

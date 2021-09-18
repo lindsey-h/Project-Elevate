@@ -8,6 +8,7 @@
           crossorigin="anonymous">
           
     <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/evo-calendar.orange-coral.css">
     <link rel="shortcut icon" type="image/jpg" href="/static/favicon.png"/>
     <!-- We'll load React dependencies on all pages for this app. -->
     
@@ -18,7 +19,7 @@
 
     {% block head %}{% endblock %}
   </head>
-  <body id="bootstrap-overrides">
+  <body>
     
     <!-- replace the flash messaging here after testing -->
     {% for msg in get_flashed_messages() %}
