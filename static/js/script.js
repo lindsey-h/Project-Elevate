@@ -44,9 +44,12 @@ $.get('/event-data/' + uId, (data) => {
 
       };
 
+      console.log(`form inputs are: ${formInputs["event-id"]}`)
+
       // Check if event id belongs to user and update button to "Leave event"
       $.post('/is-user-on-event', formInputs, (res) => {
 
+        console.log(res);
         const btnTarget = `#${buttons[i].id}.btn.update-event`
         
         // if they are an attendee 
