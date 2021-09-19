@@ -5,32 +5,65 @@
 {% endblock %}
 
 {% block body %}
-    
-<form class="form-signin" action="/login" method="POST">
 
-    <h2 class="form-signin-heading">Please Sign In</h2>
-  
-    <div class="form-group">
-      <label for="email-field" class="sr-only">Email Address</label>
-      <input type="email"
-             name="email"
-             class="form-control input-lg"
-             placeholder="Email Address"
-             required
-             autofocus>
+<div class="row d-flex justify-content-center">
+
+  <div class="col-10 col-sm-8 col-md-6 col-xl-4 form-container">
+
+    <h2>Please sign in</h2>
+    <form class="form-signin" action="/login" method="POST">
+
+      <div class="form-group row g-0">
+        <label for="email-field" class="row col-form-label">Email</label>
+        <div class="row g-0">
+          <input type="email" 
+                 class="form-control input-lg email-address" 
+                 id="email-address" 
+                 placeholder="Email address" 
+                 name="email-address" 
+                 required
+                 autofocus>
+        </div>
+      </div>
+
+      <div class="form-group row g-0">
+        <label for="password-field" class="row col-form-label">Password</label>
+        <div class="row g-0">
+          <input type="password" 
+                 class="form-control input-lg password" 
+                 id="password" 
+                 placeholder="Password" 
+                 name="password" 
+                 required>
+        </div>
+      </div>
+      
+        <!-- <div class="form-group">
+          <label for="email-field" class="sr-only">Email Address</label>
+          <input type="email"
+                name="email"
+                class="form-control input-lg"
+                placeholder="Email Address"
+                required
+                autofocus>
+        </div> -->
+      
+        <!-- <div class="form-group">
+          <label for="password-field" class="sr-only">Password</label>
+          <input type="password"
+                name="password"
+                class="form-control input-lg"
+                placeholder="Password"
+                required>
+        </div> -->
+      
+        <div class="form-group row justify-content-end">
+          <button type="submit" class="btn update-event btn-primary">Sign in</button>
+        </div>
+      
+      </form>
     </div>
-  
-    <div class="form-group">
-      <label for="password-field" class="sr-only">Password</label>
-      <input type="password"
-             name="password"
-             class="form-control input-lg"
-             placeholder="Password"
-             required>
-    </div>
-  
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
-  
-  </form>
+
+</div>
 
 {% endblock %}

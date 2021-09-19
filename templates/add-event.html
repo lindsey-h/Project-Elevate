@@ -10,33 +10,55 @@
   <div class="col-1 col-sm-1 col-md-1 col-xl-1"></div>
   <div class="col-9 col-sm-8 col-md-7 col-xl-6 form-container">
     <h2>Add an event</h2>
+    
     <form action="/add-event" method="POST">
+      
       <div class="form-group row">
         <label for="title" class="col-lg-2 col-form-label">Event title</label>
         <div class="col-lg-10">
-          <input type="text" class="form-control" id="title" placeholder="Event title" name="title" required>
+          <input type="text" 
+                 class="form-control" 
+                 id="title" 
+                 placeholder="Event title" 
+                 name="title" 
+                 required>
         </div>
       </div>
       <div class="form-group row">
         <label for="date" class="col-lg-2 col-form-label">Date</label>
         <div class="col-lg-10">
-          <input type="date" class="form-control" id="date" placeholder="Date" name="date" required>
+          <input type="date" 
+                 class="form-control" 
+                 id="date" 
+                 placeholder="Date" 
+                 name="date" 
+                 required>
         </div>
       </div>
       <div class="form-group row">
         <label for="start-time" class="col-lg-2 col-form-label">Start time</label>
         <div class="col-lg-10">
-          <input type="time" class="form-control" id="start-time" placeholder="Start time" name="start-time" required>
+          <input type="time" 
+                 class="form-control" 
+                 id="start-time" 
+                 placeholder="Start time" 
+                 name="start-time" 
+                 required>
         </div>
       </div>
       <div class="form-group row">
         <label for="end-time" class="col-lg-2 col-form-label">End time</label>
         <div class="col-lg-10">
-          <input type="time" class="form-control" id="end-time" placeholder="End time" name="end-time" required>
+          <input type="time" 
+                 class="form-control" 
+                 id="end-time" 
+                 placeholder="End time" 
+                 name="end-time" 
+                 required>
         </div>
       </div>
       <div class="form-group row justify-content-end">
-        <button type="submit" class="btn update-event btn-primary btn-sm">Submit</button>
+        <button type="submit" class="btn update-event btn-primary">Submit</button>
       </div>
     </form>
   </div>
