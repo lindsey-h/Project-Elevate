@@ -113,6 +113,11 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: .75rem;
 }
 
+#about-elevate {
+  background-color: rgb(255, 255, 255, .5);
+  padding: 40px;
+}
+
 /* .col-sm-10 {
   padding-right: 0;
 } */
