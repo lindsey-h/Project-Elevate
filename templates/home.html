@@ -28,6 +28,7 @@
     <!-- <p class="align-self-center" style="display: inline; margin: 0px 10px">Here's a nice inspirational quote for you to read.</p> -->
     <h3 id="page-title" class="align-self-center" style="display: inline; margin-right: 10px">Hi, {{current_user.fname}}!</h3>
     <a href="/logout"><button type="button" class="btn btn-outline-primary btn-sm align-self-center">Log out</button></a>
+    
   </div>
 </nav>
 
@@ -40,8 +41,30 @@
       <div class="col-10" >
         <div>
           <a href='/add-event'><button type="button" class="btn btn-primary btn-sm">Create event</button></a>
-          <a href='/sms'><button type="button" class="btn btn-primary btn-sm">Send alert</button></a>
-      </div>
+          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#smsModal">Send alert</button>
+        </div>
+        <!-- Modal taken from bootstrap documentation-->
+        <div class="modal fade" id="smsModal" tabindex="-1" role="dialog" aria-labelledby="smsModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="smsModalLabel">Send an alert to your contacts</h5>
+                <button type="button" class="close btn-secondary" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- TODO grab message from server -->
+                <!-- {{ current_user.message }} -->
+                <p>Hi, from the Elevate App. Your friend, {{ current_user.fname }}{{ current_user.lname }} needs some company. Please <a href="/">sign up for a slot</a> to hang out.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href='/sms'><button type="button" class="btn btn-primary">Send SMS</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       
       <div class="col-1"></div>
