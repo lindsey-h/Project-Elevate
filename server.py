@@ -165,9 +165,9 @@ def delete_event():
 def send_sms():
 
     # Get these from the server for the current user
-    receiver = "4158575066"
-    sender = "16824631868"
-    message = "Hi hello hay is for horses"
+    receiver = os.environ["RECIPIENT_PHONE"]
+    sender = os.environ["SENDER_PHONE"]
+    message = "Hi, from the Elevate App. Your friend, Jim Halpert, needs some company. Please sign up for a slot if you want to offer support. http://localhost:5000/users/2"
 
     sms.send_sms(receiver, sender, message)
     flash("Your message has been sent to your contacts.")
