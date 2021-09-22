@@ -134,22 +134,8 @@ $.get('/event-data/' + uId, (data) => {
     // Handler for .ready() called.
   
   
-  
-  
-  
   });
 
-  // ? ASK IN QUEUE ?
-  // How to have this load without clicking on an event date 
-  $(document).ready(function(){
-    $(".btn").click(function(){
-      console.log('clicked on me');
-    });
-  });
-
-  // .on('selectEvent', function(activeEvent) {
-  //   $('div.event-info').html("helloooooo");
-  // })
 
   $('#sidebarToggler').on('click', () => {
     $('#evoCalendar').addClass('event-hide');
@@ -159,11 +145,6 @@ $.get('/event-data/' + uId, (data) => {
     $('#evoCalendar').addClass('sidebar-hide');
   })
 
-  // $('.btn').on('click', () => {
-  
-  //   console.log('clicked on me');
-    
-  // });
 
 });
 

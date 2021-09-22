@@ -118,6 +118,10 @@ h1, h2, h3, h4, h5, h6 {
   padding: 40px;
 }
 
+#about-elevate p {
+  padding-top: 16px;
+}
+
 /* .flash-msg {
   width: 400px;
   position: absolute;

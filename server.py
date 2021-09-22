@@ -96,11 +96,6 @@ def logout():
 def send_event_data(user_id):
 
     events = crud.get_all_events_by_author(int(user_id))
-    print("*-"*20)
-    print(user_id)
-    print(events)
-    print("*-"*20)
-
     events_and_users = []
 
     for event in events:
@@ -134,11 +129,6 @@ def remove_user_from_event():
 def is_user_on_event():
 
     event_id = int(request.form.get("event-id"))
-    print("&"*20)
-    print(f'js sent event id: {event_id}')
-    print("&"*20)
-
-    # also check that they are not the author
 
     for event in current_user.events:
         print(f'In the loop server id: {event.event_id}')
@@ -156,10 +146,6 @@ def delete_event():
 
     return redirect("/")
 
-# @app.route('is-user-author', methods=['POST', 'GET'])
-# def is_author():
-
-
 
 @app.route("/sms", methods=['POST', 'GET'])
 def send_sms():
@@ -167,28 +153,12 @@ def send_sms():
     # Get these from the server for the current user
     receiver = os.environ["RECIPIENT_PHONE"]
     sender = os.environ["SENDER_PHONE"]
-    message = "Hi, from the Elevate App. Your friend, Jim Halpert, needs some company. Please sign up for a slot if you want to offer support. http://localhost:5000/users/2"
+    message = f"Hi, from the Elevate App. Your friend, {current_user.fname} {current_user.lname}, needs some company. Please sign up for a slot if you want to offer support. http://localhost:5000/users/2"
 
     sms.send_sms(receiver, sender, message)
     flash("Your message has been sent to your contacts.")
 
     return redirect("/")
-
-
-# @app.route('/users-by-event')
-# def get_users_by_event():
-
-#     event_id = int(request.args.get("index"))
-
-#     print("*"*20)
-#     print(f"eventid: {event_id}")
-#     print("*"*20)
-
-#     users = crud.get_users_by_event(event_id)
-#     # print(f"users: {users}")
-    
-#     return jsonify([user.serialize() for user in users])
-
 
 
 @app.route('/add-event')
